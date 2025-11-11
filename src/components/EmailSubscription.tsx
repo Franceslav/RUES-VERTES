@@ -36,7 +36,7 @@ export default function EmailSubscription() {
       <div className="relative w-full bg-bg-4 rounded-lg overflow-hidden flex flex-col items-center justify-center p-6 md:p-8">
         <div className="text-center space-y-4 z-10 max-w-2xl w-full">
           <h2 className="text-xl md:text-2xl lg:text-3xl uppercase font-medium text-[#FFF8F0]" style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontWeight: 500 }}>
-            Скидка 10% за подписку на имейл-рассылку
+            Скидка 10% за подписку на EMAIL-РАССЫЛКУ
           </h2>
           <p className="text-xs md:text-sm text-[#FFF8F0] opacity-90" style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontWeight: 400 }}>
             Промокод действует на первую покупку (исключая товары со скидкой)

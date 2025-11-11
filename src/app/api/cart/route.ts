@@ -104,10 +104,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Проверка существования товара
-    const product = await prisma.product.findUnique({
+    // Проверка существования товара по ID или коду
+    let product = await prisma.product.findUnique({
       where: { id: productId },
     });
+
+    if (!product) {
+      product = await prisma.product.findUnique({
+        where: { code: productId },
+      });
+    }
 
     if (!product) {
       return NextResponse.json(
@@ -116,12 +122,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const resolvedProductId = product.id;
+
     // Проверка существования товара в корзине
     const existingItem = await prisma.cartItem.findUnique({
       where: {
         userId_productId_size_color_fit: {
           userId,
-          productId,
+          productId: resolvedProductId,
           size: size || '',
           color: color || '',
           fit: fit || '',
@@ -142,7 +150,7 @@ export async function POST(request: NextRequest) {
       cartItem = await prisma.cartItem.create({
         data: {
           userId,
-          productId,
+          productId: resolvedProductId,
           quantity,
           size: size || null,
           color: color || null,

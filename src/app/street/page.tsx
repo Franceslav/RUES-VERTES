@@ -1,6 +1,5 @@
 import HeaderNavigation from "@/components/HeaderNavigation";
 import Footer from "@/components/Footer";
-import Link from "next/link";
 
 export default function StreetPage() {
   return (
@@ -39,18 +38,12 @@ export default function StreetPage() {
               Исследуйте наши коллекции:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Link
-                href="/men"
-                className="relative aspect-[4/5] bg-bg-2 rounded-lg overflow-hidden flex items-center justify-center hover:opacity-80 transition-opacity"
-              >
-                <span className="text-bg-3 opacity-30 uppercase text-sm">Мужское</span>
-              </Link>
-              <Link
-                href="/women"
-                className="relative aspect-[4/5] bg-bg-2 rounded-lg overflow-hidden flex items-center justify-center hover:opacity-80 transition-opacity"
-              >
-                <span className="text-bg-3 opacity-30 uppercase text-sm">Женское</span>
-              </Link>
+              <div className="relative aspect-[4/5] bg-bg-2 rounded-lg overflow-hidden flex items-center justify-center">
+                <span className="text-bg-3 opacity-30 uppercase text-sm">Мужская коллекция — скоро</span>
+              </div>
+              <div className="relative aspect-[4/5] bg-bg-2 rounded-lg overflow-hidden flex items-center justify-center">
+                <span className="text-bg-3 opacity-30 uppercase text-sm">Женская коллекция — скоро</span>
+              </div>
             </div>
           </section>
         </div>

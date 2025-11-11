@@ -35,7 +35,6 @@ export default function ProductCard({ id, name, code, price, image }: ProductCar
         {/* Цвета (заглушка) */}
         <div className="flex gap-2">
           <div className="w-4 h-4 rounded-full bg-white border border-black/20"></div>
-          <div className="w-4 h-4 rounded-full bg-bg-3 border border-black/20"></div>
           <div className="w-4 h-4 rounded-full bg-bg-4 border border-black/20"></div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import HeaderNavigation from "@/components/HeaderNavigation";
 import Footer from "@/components/Footer";
 import EmailSubscription from "@/components/EmailSubscription";
 import ProductCard from "@/components/ProductCard";
-import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function CollectionsPage() {
@@ -16,8 +16,16 @@ export default function CollectionsPage() {
   ];
 
   // Примеры товаров - только футболка
+  const featuredProductId = "RV-W-002";
+
   const products = [
-    { id: "8", name: "Футболка женская", code: "RV-W-002", price: 5990 },
+    {
+      id: featuredProductId,
+      name: "Футболка женская",
+      code: "RV-W-002",
+      price: 6800,
+      image: "/2025719194253168.jpg",
+    },
   ];
 
   return (
@@ -29,20 +37,28 @@ export default function CollectionsPage() {
 
         {/* Разделы Мужское/Женское */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <Link href="/men" className="group">
-            <div className="relative aspect-[4/5] bg-bg-2 rounded-lg overflow-hidden flex items-center justify-center hover:opacity-80 transition-opacity">
-              <span className="text-bg-3 opacity-30 uppercase text-lg group-hover:opacity-50 transition-opacity">
-                Мужское
-              </span>
-            </div>
-          </Link>
-          <Link href="/women" className="group">
-            <div className="relative aspect-[4/5] bg-bg-2 rounded-lg overflow-hidden flex items-center justify-center hover:opacity-80 transition-opacity">
-              <span className="text-bg-3 opacity-30 uppercase text-lg group-hover:opacity-50 transition-opacity">
-                Женское
-              </span>
-            </div>
-          </Link>
+          <div className="group relative aspect-[4/5] rounded-lg overflow-hidden">
+            <Image
+              src="/202583155953600.jpg"
+              alt="Мужская коллекция Reus Vertus"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" aria-hidden="true" />
+          </div>
+          <div className="group relative aspect-[4/5] rounded-lg overflow-hidden">
+            <Image
+              src="/dclassic%202025-08-25%20153725.511.JPG"
+              alt="Женская коллекция Reus Vertus"
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" aria-hidden="true" />
+          </div>
         </div>
 
         {/* Категории - переключатель */}

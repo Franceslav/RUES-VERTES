@@ -116,7 +116,7 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
         viewBox="0 0 706 338" 
         fill="none" 
         xmlns="http://www.w3.org/2000/svg"
-        className="h-10 w-auto"
+        className="h-16 w-auto"
       >
         <rect width="705.878" height="67.2265" fill="#FFFFFF"/>
         <rect y="270.773" width="705.878" height="67.2265" fill="#FFFFFF"/>
@@ -136,27 +136,27 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
 
   // Иконки
   const SearchIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M19 19L13 13M15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.5 22.5L15.5 15.5M18 9C18 13.4183 14.4183 17 10 17C5.58172 17 2 13.4183 2 9C2 4.58172 5.58172 1 10 1C14.4183 1 18 4.58172 18 9Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 
   const HeartIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.5 3.33334C17.058 2.89134 16.517 2.55934 15.925 2.36334C15.333 2.16734 14.705 2.11234 14.089 2.20334C13.473 2.29434 12.884 2.52834 12.366 2.88934C11.848 3.25034 11.414 3.72834 11.1 4.28534L10 6.66667L8.9 4.28534C8.586 3.72834 8.152 3.25034 7.634 2.88934C7.116 2.52834 6.527 2.29434 5.911 2.20334C5.295 2.11234 4.667 2.16734 4.075 2.36334C3.483 2.55934 2.942 2.89134 2.5 3.33334C1.916 3.91734 1.467 4.62034 1.185 5.39334C0.903 6.16634 0.794 6.99034 0.866 7.80634C0.938 8.62234 1.189 9.41134 1.6 10.12C2.011 10.8287 2.573 11.4387 3.243 11.9053L10 17.5L16.757 11.9053C17.427 11.4387 17.989 10.8287 18.4 10.12C18.811 9.41134 19.062 8.62234 19.134 7.80634C19.206 6.99034 19.097 6.16634 18.815 5.39334C18.533 4.62034 18.084 3.91734 17.5 3.33334Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 4C20.4696 3.46957 19.8071 3.07291 19.0711 2.84265C18.3351 2.6124 17.553 2.55641 16.7958 2.67915C16.0386 2.80189 15.331 3.0996 14.732 3.54597C14.133 3.99235 13.6614 4.57343 13.357 5.238L12 8L10.643 5.238C10.3386 4.57343 9.86704 3.99235 9.26805 3.54597C8.66906 3.0996 7.96145 2.80189 7.20424 2.67915C6.44704 2.55641 5.66494 2.6124 4.92893 2.84265C4.19292 3.07291 3.53037 3.46957 3 4C2.29992 4.70008 1.77996 5.56031 1.48559 6.51201C1.19121 7.46371 1.13149 8.4791 1.31253 9.46438C1.49357 10.4497 1.90991 11.3746 2.52371 12.1544C3.1375 12.9343 3.9288 13.5456 4.826 13.93L12 20L19.174 13.93C20.0712 13.5456 20.8625 12.9343 21.4763 12.1544C22.0901 11.3746 22.5064 10.4497 22.6875 9.46438C22.8685 8.4791 22.8088 7.46371 22.5144 6.51201C22.22 5.56031 21.7001 4.70008 21 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 
   const ProfileIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M10 12.5C5.58172 12.5 2 13.8429 2 15.5V20H18V15.5C18 13.8429 14.4183 12.5 10 12.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M12 15C7.58172 15 4 16.7909 4 19V22H20V19C20 16.7909 16.4183 15 12 15Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 
   const CartIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 1H4.27273L6.46545 12.5H16.1818L18.8182 5H5.54545M7.90909 18C8.50642 18 9 17.5064 9 16.9091C9 16.3118 8.50642 15.8182 7.90909 15.8182C7.31176 15.8182 6.81818 16.3118 6.81818 16.9091C6.81818 17.5064 7.31176 18 7.90909 18ZM16.9091 18C17.5064 18 18 17.5064 18 16.9091C18 16.3118 17.5064 15.8182 16.9091 15.8182C16.3118 15.8182 15.8182 16.3118 15.8182 16.9091C15.8182 17.5064 16.3118 18 16.9091 18Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2H5.12727L7.75868 15H19.4182L22.1818 6H6.65455M9.35455 21C10.207 21 10.9 20.307 10.9 19.4545C10.9 18.602 10.207 17.9091 9.35455 17.9091C8.50205 17.9091 7.80909 18.602 7.80909 19.4545C7.80909 20.307 8.50205 21 9.35455 21ZM18.6455 21C19.498 21 20.1909 20.307 20.1909 19.4545C20.1909 18.602 19.498 17.9091 18.6455 17.9091C17.793 17.9091 17.1 18.602 17.1 19.4545C17.1 20.307 17.793 21 18.6455 21Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 
@@ -166,11 +166,11 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
   const SearchDropdown = () => (
     <div
       ref={searchRef}
-      className={`absolute top-full left-0 right-0 bg-white border-t border-bg-4 shadow-lg z-50 ${
+      className={`absolute top-full left-0 right-0 bg-bg-1 border-t border-bg-4 shadow-lg z-50 ${
         isSearchOpen ? "block" : "hidden"
       }`}
     >
-      <div className="max-w-5xl mx-auto px-4 py-4">
+      <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="relative">
           <input
             ref={inputRef}
@@ -178,7 +178,7 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Поиск товаров..."
-            className="w-full px-4 py-3 border-2 border-bg-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-bg-4 text-bg-3 uppercase"
+            className="w-full px-4 py-3 border-2 border-bg-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-bg-4 text-bg-3 uppercase bg-bg-1"
             style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontWeight: 400 }}
           />
           {isSearching && (
@@ -226,106 +226,129 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
   if (isMobile) {
     return (
       <header
-        className={`bg-bg-4 text-white pt-3 pb-4 relative ${className}`}
+        className={`bg-bg-4 text-white pt-4 pb-5 relative sticky top-0 z-50 ${className}`}
       >
-          <div className="max-w-5xl mx-auto px-4 flex flex-col items-start justify-between">
-            <div className="flex items-center justify-between w-full">
-              {logo}
-              <div className="flex flex-col gap-[2px] h-[9.256px] w-[24.355px]">
-                {menuBar}
-                {menuBar}
-              </div>
-            </div>
-            <nav className="flex flex-col gap-2 items-end justify-center w-full">
-              <Link
-                href="/collections"
-                className="flex items-center justify-center px-[5px] py-[3px] uppercase"
-              >
-                Коллекции
-              </Link>
-              <Link
-                href="/looks"
-                className="flex items-center justify-center px-[5px] py-[3px] uppercase"
-              >
-                Образы
-              </Link>
-              <Link
-                href="/about"
-                className="flex items-center justify-center px-[5px] py-[3px] uppercase"
-              >
-                О бренде
-              </Link>
-            </nav>
-            <div className="flex items-center gap-2 w-full justify-end mt-2">
-              <button
-                onClick={handleSearchClick}
-                className="p-1 hover:opacity-70 transition-opacity"
-                aria-label="Поиск"
-              >
-                <SearchIcon />
-              </button>
-              <Link href="/favorites" className="p-1" aria-label="Избранное">
-                <HeartIcon />
-              </Link>
-              <Link href="/profile" className="p-1" aria-label="Профиль">
-                <ProfileIcon />
-              </Link>
-              <Link href="/cart" className="p-1" aria-label="Корзина">
-                <CartIcon />
-              </Link>
-            </div>
+        <div className="max-w-6xl mx-auto px-6 flex flex-col items-start justify-between">
+        <div className="flex items-center justify-between w-full">
+          {logo}
+          <div className="flex flex-col gap-[2px] h-[9.256px] w-[24.355px]">
+            {menuBar}
+            {menuBar}
           </div>
-          <SearchDropdown />
-        </header>
+        </div>
+          <nav className="flex flex-col gap-4 items-end justify-center w-full mt-4">
+            <Link
+              href="/collections"
+              className="flex items-center justify-center px-4 py-2 uppercase text-base tracking-[0.2em]"
+            >
+              Shop now
+            </Link>
+            <Link
+              href="/looks"
+              className="flex items-center justify-center px-4 py-2 uppercase text-base tracking-[0.2em]"
+            >
+              Lookbook
+            </Link>
+            <Link
+              href="/about"
+              className="flex items-center justify-center px-4 py-2 uppercase text-base tracking-[0.2em]"
+            >
+              About
+            </Link>
+        </nav>
+          <div className="flex flex-wrap items-center gap-3 w-full justify-end mt-5">
+            <button
+              onClick={handleSearchClick}
+            className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
+              aria-label="Поиск"
+            >
+              <SearchIcon />
+              <span className="sr-only">Поиск</span>
+            </button>
+            <Link
+              href="/favorites"
+            className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
+              aria-label="Избранное (понравившиеся товары)"
+            >
+              <HeartIcon />
+              <span className="sr-only">Избранное</span>
+            </Link>
+            <Link
+              href="/profile"
+              className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
+              aria-label="Аккаунт (профиль)"
+            >
+              <ProfileIcon />
+              <span className="sr-only">Аккаунт</span>
+            </Link>
+            <Link
+              href="/cart"
+              className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
+              aria-label="Корзина"
+            >
+              <CartIcon />
+              <span className="sr-only">Корзина</span>
+            </Link>
+          </div>
+        </div>
+        <SearchDropdown />
+      </header>
     );
   }
 
   // Tablet version
   if (isTablet) {
     return (
-      <header className={`bg-bg-4 text-white py-3 relative ${className}`}>
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-2">
-            {logo}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={handleSearchClick}
-                className="p-1 hover:opacity-70 transition-opacity"
-                aria-label="Поиск"
-              >
-                <SearchIcon />
-              </button>
-              <Link href="/favorites" className="p-1" aria-label="Избранное">
-                <HeartIcon />
-              </Link>
-              <Link href="/profile" className="p-1" aria-label="Профиль">
-                <ProfileIcon />
-              </Link>
-              <Link href="/cart" className="p-1" aria-label="Корзина">
-                <CartIcon />
-              </Link>
-            </div>
-          </div>
-          <nav className="flex gap-3 items-center">
-            <Link
-              href="/collections"
-              className="flex items-center justify-center px-[5px] py-[3px] uppercase"
-            >
-              Коллекции
+      <header className={`bg-bg-4 text-white py-5 relative sticky top-0 z-50 ${className}`}>
+        <div className="w-full px-10 flex items-center gap-8">
+          <nav className="flex flex-1 items-center justify-start gap-8 uppercase tracking-[0.25em] text-lg">
+            <Link href="/collections" className="hover:opacity-80 transition-opacity">
+              Shop now
             </Link>
-            <Link
-              href="/looks"
-              className="flex items-center justify-center px-[5px] py-[3px] uppercase"
-            >
-              Образы
+            <Link href="/looks" className="hover:opacity-80 transition-opacity">
+              Lookbook
             </Link>
-            <Link
-              href="/about"
-              className="flex items-center justify-center px-[5px] py-[3px] uppercase"
-            >
-              О бренде
+            <Link href="/about" className="hover:opacity-80 transition-opacity">
+              About
             </Link>
           </nav>
+          <div className="flex flex-1 justify-center">
+            {logo}
+          </div>
+          <div className="flex flex-1 items-center justify-end gap-3">
+            <button
+              onClick={handleSearchClick}
+              className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
+              aria-label="Поиск"
+            >
+              <SearchIcon />
+              <span className="sr-only">Поиск</span>
+            </button>
+            <Link
+              href="/favorites"
+              className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
+              aria-label="Избранное (понравившиеся товары)"
+            >
+              <HeartIcon />
+              <span className="sr-only">Избранное</span>
+            </Link>
+            <Link
+              href="/profile"
+              className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
+              aria-label="Аккаунт (профиль)"
+            >
+              <ProfileIcon />
+              <span className="sr-only">Аккаунт</span>
+            </Link>
+            <Link
+              href="/cart"
+              className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
+              aria-label="Корзина"
+            >
+              <CartIcon />
+              <span className="sr-only">Корзина</span>
+            </Link>
+          </div>
         </div>
         <SearchDropdown />
       </header>
@@ -334,47 +357,54 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
 
   // Desktop version
   return (
-    <header className={`bg-bg-4 text-white py-2 relative ${className}`}>
-      <div className="max-w-5xl mx-auto px-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+    <header className={`bg-bg-4 text-white py-5 relative sticky top-0 z-50 ${className}`}>
+      <div className="w-full px-14 flex items-center gap-10">
+        <nav className="flex flex-1 items-center justify-start gap-10 uppercase tracking-[0.25em] text-lg">
+          <Link href="/collections" className="hover:opacity-80 transition-opacity">
+            Shop now
+          </Link>
+          <Link href="/looks" className="hover:opacity-80 transition-opacity">
+            Lookbook
+          </Link>
+          <Link href="/about" className="hover:opacity-80 transition-opacity">
+            About
+          </Link>
+        </nav>
+        <div className="flex flex-1 justify-center">
           {logo}
-          <nav className="flex gap-4 items-center">
-            <Link
-              href="/collections"
-              className="flex items-center justify-center px-2 py-1 uppercase text-base hover:opacity-70 transition-opacity"
-            >
-              Коллекции
-            </Link>
-            <Link
-              href="/looks"
-              className="flex items-center justify-center px-2 py-1 uppercase text-base hover:opacity-70 transition-opacity"
-            >
-              Образы
-            </Link>
-            <Link
-              href="/about"
-              className="flex items-center justify-center px-2 py-1 uppercase text-base hover:opacity-70 transition-opacity"
-            >
-              О бренде
-            </Link>
-          </nav>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-1 items-center justify-end gap-4">
           <button
             onClick={handleSearchClick}
-            className="p-1 hover:opacity-70 transition-opacity"
+            className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
             aria-label="Поиск"
           >
             <SearchIcon />
+            <span className="sr-only">Поиск</span>
           </button>
-          <Link href="/favorites" className="p-1 hover:opacity-70 transition-opacity" aria-label="Избранное">
+          <Link
+            href="/favorites"
+            className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
+            aria-label="Избранное (понравившиеся товары)"
+          >
             <HeartIcon />
+            <span className="sr-only">Избранное</span>
           </Link>
-          <Link href="/profile" className="p-1 hover:opacity-70 transition-opacity" aria-label="Профиль">
+          <Link
+            href="/profile"
+            className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
+            aria-label="Аккаунт (профиль)"
+          >
             <ProfileIcon />
+            <span className="sr-only">Аккаунт</span>
           </Link>
-          <Link href="/cart" className="p-1 hover:opacity-70 transition-opacity" aria-label="Корзина">
+          <Link
+            href="/cart"
+            className="flex items-center justify-center p-3 rounded-full border border-white/20 hover:border-white/40 transition-colors"
+            aria-label="Корзина"
+          >
             <CartIcon />
+            <span className="sr-only">Корзина</span>
           </Link>
         </div>
       </div>

@@ -158,7 +158,7 @@ export default function Footer() {
         <div className="mt-6 pt-6 border-t border-white/20 text-xs opacity-70 flex items-center justify-between flex-wrap gap-4">
           <div className="space-y-1">
             <p>ИНН: 123456789012</p>
-            <p>ОГРН: 1234567890123</p>
+            <p>ИНН: 123456789012</p>
           </div>
           <p>© 2024 Reus Vertes. Все права защищены.</p>
         </div>

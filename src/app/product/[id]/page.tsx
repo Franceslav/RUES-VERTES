@@ -2,11 +2,18 @@
 
 import HeaderNavigation from "@/components/HeaderNavigation";
 import Footer from "@/components/Footer";
-import { useState, use, useEffect } from "react";
+import { useState, use, useEffect, useMemo } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import EmailSubscription from "@/components/EmailSubscription";
+import Image from "next/image";
+
+const FALLBACK_PRODUCT_IMAGES = [
+  "/2025719194253168.jpg",
+  "/dclassic%202025-08-17%20173739.668.JPG",
+  "/dclassic%202025-08-25%20153725.511.JPG",
+];
 
 interface Product {
   id: string;
@@ -27,8 +34,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const router = useRouter();
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedColor, setSelectedColor] = useState<string>("");
-  const [selectedFit, setSelectedFit] = useState<string>("");
-  const [activeTab, setActiveTab] = useState<"description" | "composition" | "care" | "delivery">("description");
+  const [selectedFit, setSelectedFit] = useState<string>("Regular");
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -39,7 +45,6 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
   const defaultColors = [
     { name: "Белый", value: "#FFFFFF" },
-    { name: "Черный", value: "#050517" },
     { name: "Зеленый", value: "#006341" },
   ];
 
@@ -162,7 +167,6 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
         const colorMap: Record<string, string> = {
           "#006341": "Зеленый",
           "#FFFFFF": "Белый",
-          "#050517": "Черный",
         };
         return { name: colorMap[color] || color, value: color };
       })
@@ -170,10 +174,33 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
   // Посадка - выбирается пользователем
   const fitScale = [
-    { label: "Узкая", value: "Узкая" },
-    { label: "Обычная", value: "Обычная" },
-    { label: "Свободная", value: "Свободная" },
+    { label: "Slim", value: "Slim" },
+    { label: "Slim/Regular", value: "Slim/Regular" },
+    { label: "Regular", value: "Regular" },
+    { label: "Relaxed", value: "Relaxed" },
+    { label: "Oversized", value: "Oversized" },
   ];
+
+  const lookbookImages = [
+    { src: "/lookbook/202571920230512.jpg", alt: "Lookbook образ 1" },
+    { src: "/lookbook/2025719202722568.jpg", alt: "Lookbook образ 2" },
+    { src: "/lookbook/202583151222472.jpg", alt: "Lookbook образ 3" },
+  ];
+
+  const galleryImages = useMemo(() => {
+    const baseImages = product?.imageUrl
+      ? [product.imageUrl, ...FALLBACK_PRODUCT_IMAGES]
+      : FALLBACK_PRODUCT_IMAGES;
+    return Array.from(new Set(baseImages.filter(Boolean)));
+  }, [product?.imageUrl]);
+
+  useEffect(() => {
+    if (galleryImages.length > 0 && selectedImageIndex >= galleryImages.length) {
+      setSelectedImageIndex(0);
+    }
+  }, [galleryImages.length, selectedImageIndex]);
+
+  const activeImage = galleryImages[selectedImageIndex] ?? galleryImages[0];
   
   // Установить посадку по умолчанию из БД при загрузке товара
   useEffect(() => {
@@ -262,32 +289,51 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Основной блок: Фото слева, информация справа */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-14 items-start">
           {/* Левая колонка: Фото товара (закрепляется) */}
           <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)]">
             <div className="space-y-4">
               {/* Главное фото */}
               <div className="relative w-full aspect-square bg-bg-2 rounded-lg overflow-hidden flex items-center justify-center">
-                <span className="text-bg-3 opacity-30 uppercase text-sm">
-                  Фото товара {selectedImageIndex + 1}
-                </span>
+                {activeImage ? (
+                  <Image
+                    src={activeImage}
+                    alt={product?.name ? `${product.name} — фото ${selectedImageIndex + 1}` : `Фото товара ${selectedImageIndex + 1}`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
+                    priority
+                  />
+                ) : (
+                  <span className="text-bg-3 opacity-30 uppercase text-sm">
+                    Фото товара {selectedImageIndex + 1}
+                  </span>
+                )}
               </div>
 
               {/* Миниатюры */}
               <div className="grid grid-cols-4 gap-2">
-                {[0, 1, 2, 3].map((index) => (
+                {galleryImages.map((imageSrc, index) => (
                   <button
-                    key={index}
+                    key={imageSrc}
                     onClick={() => setSelectedImageIndex(index)}
-                    className={`relative aspect-square bg-bg-2 rounded-lg overflow-hidden flex items-center justify-center border-2 transition-colors ${
+                    className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-colors ${
                       selectedImageIndex === index
                         ? "border-bg-4"
-                        : "border-transparent hover:border-black/20"
+                        : "border-transparent hover:border-bg-4/40"
                     }`}
+                    aria-label={`Показать фото ${index + 1}`}
                   >
-                    <span className="text-bg-3 opacity-30 uppercase text-xs">
-                      {index + 1}
-                    </span>
+                    <Image
+                      src={imageSrc}
+                      alt={product?.name ? `${product.name} — миниатюра ${index + 1}` : `Миниатюра ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 25vw, 10vw"
+                      className="object-cover"
+                    />
+                    {selectedImageIndex === index && (
+                      <span className="absolute inset-0 border-2 border-bg-4 pointer-events-none" aria-hidden="true"></span>
+                    )}
                   </button>
                 ))}
               </div>
@@ -295,7 +341,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           </div>
 
           {/* Правая колонка: Информация о товаре */}
-          <div className="space-y-6">
+          <div className="space-y-6 pt-2 lg:pt-0">
             {/* Название товара + код товара */}
             <div>
               <h1 className="text-3xl uppercase mb-2">
@@ -342,20 +388,44 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               {/* Посадка - выбирается пользователем */}
               <div>
                 <p className="uppercase text-sm font-medium mb-3">Посадка</p>
-                <div className="flex gap-2">
-                  {fitScale.map((item) => (
-                    <button
-                      key={item.value}
-                      onClick={() => setSelectedFit(item.value)}
-                      className={`flex-1 rounded p-2 text-center text-sm transition-colors ${
-                        selectedFit === item.value
-                          ? "bg-bg-4 text-white font-medium"
-                          : "bg-bg-2 hover:bg-bg-2/80"
-                      }`}
-                    >
-                      {item.label}
-                    </button>
-                  ))}
+                <div className="relative w-full max-w-xl">
+                  <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-black/30 -translate-y-1/2" aria-hidden="true" />
+                  <div className="grid grid-cols-5 gap-3 relative">
+                    {fitScale.map((item) => {
+                      const isRegular = item.value === "Regular";
+                      const isActive = selectedFit === item.value || isRegular;
+
+                      return (
+                        <button
+                          key={item.value}
+                          onClick={() => {
+                            if (isRegular) {
+                              setSelectedFit(item.value);
+                            }
+                          }}
+                          disabled={!isRegular}
+                          aria-disabled={!isRegular}
+                          className={`relative flex flex-col items-center gap-2 transition-colors ${
+                            isRegular ? "text-bg-4" : "text-bg-3 opacity-50 cursor-not-allowed"
+                          }`}
+                          aria-label={`Посадка ${item.label}`}
+                        >
+                          <span
+                            className={`w-12 h-12 rounded-full border-2 flex items-center justify-center text-xs uppercase tracking-widest transition-all ${
+                              isActive && isRegular
+                                ? "border-bg-4 bg-bg-4 text-white"
+                                : "border-black/10 bg-white"
+                            }`}
+                          >
+                            {item.label.charAt(0)}
+                          </span>
+                          <span className="text-[10px] uppercase tracking-widest text-center leading-tight">
+                            {item.label}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
 
@@ -431,131 +501,93 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           </div>
         </div>
 
-        {/* Инфо о товаре - Табы */}
-        <div className="mb-16">
-          <div className="border-b border-black/20 mb-6">
-            <div className="flex gap-6 overflow-x-auto">
-              {[
-                { id: "description", label: "Описание" },
-                { id: "composition", label: "Состав" },
-                { id: "care", label: "Уход" },
-                { id: "delivery", label: "Доставка" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                  className={`pb-3 uppercase text-sm whitespace-nowrap transition-colors ${
-                    activeTab === tab.id
-                      ? "border-b-2 border-black font-medium"
-                      : "opacity-50 hover:opacity-100"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
+        {/* Инфо о товаре */}
+        <div className="mb-16 space-y-10">
+          <div>
+   	      <h2 className="text-2xl uppercase mb-6">Инфо о товаре</h2>
+          <div className="space-y-8">
+            <section>
+              <h3 className="uppercase text-sm font-medium mb-3">Описание</h3>
+              <p className="leading-relaxed opacity-80">
+                {product?.description ||
+                  "Премиальная футболка из высококачественного хлопка. Идеальная посадка и комфорт для повседневной носки. Минималистичный дизайн подойдет к любому образу."}
+              </p>
+            </section>
 
-          <div className="space-y-6">
-            {activeTab === "description" && (
-              <div>
-                <h3 className="uppercase mb-4">Описание</h3>
-                <p className="leading-relaxed opacity-80">
-                  Премиальная футболка из высококачественного хлопка. Идеальная посадка и комфорт для повседневной носки.
-                  Минималистичный дизайн подойдет к любому образу.
-                </p>
-              </div>
-            )}
+            <section>
+              <h3 className="uppercase text-sm font-medium mb-3">Состав</h3>
+              <p className="leading-relaxed opacity-80">
+                100% хлопок, кулирка с peach-эффектом, 250&nbsp;г/м²
+              </p>
+            </section>
 
-            {activeTab === "composition" && (
-              <div>
-                <h3 className="uppercase mb-4">Состав</h3>
-                <ul className="space-y-2 opacity-80">
-                  <li>• 100% органический хлопок</li>
-                  <li>• Плотность: 220 г/м²</li>
-                  <li>• Производство: Португалия</li>
-                </ul>
-              </div>
-            )}
+            <section>
+              <h3 className="uppercase text-sm font-medium mb-3">Параметры модели</h3>
+              <p className="leading-relaxed opacity-80">Рост: 180 см, размер: M</p>
+            </section>
 
-            {activeTab === "care" && (
-              <div>
-                <h3 className="uppercase mb-4">Уход</h3>
-                <ul className="space-y-2 opacity-80">
-                  <li>• Машинная стирка при 30°C</li>
-                  <li>• Не отбеливать</li>
-                  <li>• Гладить при низкой температуре</li>
-                  <li>• Не подвергать химчистке</li>
-                </ul>
-              </div>
-            )}
+            <section>
+              <h3 className="uppercase text-sm font-medium mb-3">Подробности, материалы и инструкция по уходу</h3>
+              <p className="leading-relaxed opacity-80">
+                Изделие изготавливается из высококачественного хлопка с мягкой поверхностью. Рекомендуется деликатный уход, чтобы сохранить структуру ткани и насыщенность цвета.
+              </p>
+            </section>
 
-            {activeTab === "delivery" && (
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h3 className="uppercase mb-4">Доставка</h3>
-                <p className="leading-relaxed opacity-80">
-                  Доставка по Москве и регионам России. Срок доставки: 1-3 рабочих дня.
-                </p>
+                <h3 className="uppercase text-sm font-medium mb-1">Артикул</h3>
+                <p className="opacity-80 uppercase">{product?.code || "RV-001"}</p>
               </div>
-            )}
-          </div>
+              <div>
+                <h3 className="uppercase text-sm font-medium mb-1">Коллекция</h3>
+                <p className="opacity-80 uppercase">Осень-Зима 2024</p>
+              </div>
+            </section>
 
-          {/* Дополнительная информация */}
-          <div className="space-y-4 mt-8 pt-8 border-t border-black/10">
-            <div>
-              <p className="text-sm opacity-70 mb-1">Параметры модели</p>
-              <p className="opacity-80">Рост: 180 см, Размер: M</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <p className="text-sm opacity-70 mb-1">Артикул</p>
-                <p className="uppercase">{product?.code || "RV-001"}</p>
-              </div>
-              <div>
-                <p className="text-sm opacity-70 mb-1">Коллекция</p>
-                <p className="uppercase">Весна-Лето 2024</p>
-              </div>
-            </div>
-            <div>
+            <section>
+              <h3 className="uppercase text-sm font-medium mb-3">Уход</h3>
+              <ul className="space-y-2 opacity-80">
+                <li>• Машинная стирка при 30°C</li>
+                <li>• Не отбеливать</li>
+                <li>• Гладить при низкой температуре</li>
+                <li>• Не подвергать химчистке</li>
+              </ul>
+            </section>
+
+            <section>
+              <h3 className="uppercase text-sm font-medium mb-3">Доставка</h3>
+              <p className="leading-relaxed opacity-80">
+                Доставка по Москве и регионам России. Срок доставки: 1–3 рабочих дня.
+              </p>
+            </section>
+
+            <section>
               <Link
                 href="/contacts"
-                className="text-sm underline opacity-70 hover:opacity-100 inline-block"
+                className="text-sm uppercase underline opacity-70 hover:opacity-100 inline-block"
               >
                 Задать вопрос о товаре
               </Link>
-            </div>
+            </section>
           </div>
         </div>
+      </div>
 
-        {/* С чем носить */}
+        {/* Lookbook */}
         <div className="mb-16">
-          <h2 className="text-2xl uppercase mb-8">С чем носить</h2>
+          <h2 className="text-2xl uppercase mb-8">Lookbook</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3].map((item) => (
-              <div
-                key={item}
-                className="relative w-full aspect-[3/4] bg-bg-2 rounded-lg overflow-hidden flex items-center justify-center"
-              >
-                <span className="text-bg-3 opacity-30 uppercase text-xs text-center px-4">
-                  Составленный лук из нашей одежды
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Уже носят */}
-        <div className="mb-16">
-          <h2 className="text-2xl uppercase mb-8">Уже носят</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((item) => (
-              <div
-                key={item}
-                className="relative w-full aspect-[3/4] bg-bg-2 rounded-lg overflow-hidden flex items-center justify-center"
-              >
-                <span className="text-bg-3 opacity-30 uppercase text-xs text-center px-4">
-                  Примеры креаторов в этом элементе одежды
-                </span>
+            {lookbookImages.map((image, index) => (
+              <div key={image.src} className="group relative w-full aspect-[3/4] overflow-hidden rounded-lg">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  priority={index === 0}
+                />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" aria-hidden="true" />
               </div>
             ))}
           </div>
