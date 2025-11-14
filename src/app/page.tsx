@@ -23,14 +23,14 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 flex flex-col items-center justify-center gap-8 px-4 text-center translate-y-20 md:translate-y-16">
           <h1
-            className="text-white text-3xl md:text-5xl lg:text-[4.5rem] font-bold uppercase tracking-[0.3em] leading-[1.3]"
+            className="text-white text-3xl md:text-5xl lg:text-[4.5rem] font-bold uppercase tracking-[0.1em] leading-[1.3]"
             style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontWeight: 700 }}
           >
             VRT SHIRT 001
           </h1>
           <Link
             href={`/product/${featuredProductId}`}
-            className="px-12 py-6 md:px-16 md:py-7 border-[3px] border-white text-white uppercase tracking-[0.35em] text-3xl md:text-4xl font-semibold flex items-center justify-center transition-colors duration-200 hover:bg-white hover:text-bg-4 translate-y-6 md:translate-y-0"
+            className="px-14 py-6 md:px-20 md:py-8 border-[4px] border-white text-white uppercase tracking-[0.2em] text-[2.8rem] md:text-[10.4rem] font-black flex items-center justify-center transition-colors duration-200 hover:bg-white hover:text-bg-4 translate-y-6 md:translate-y-0"
           >
             Shop now
           </Link>

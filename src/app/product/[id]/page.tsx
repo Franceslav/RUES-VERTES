@@ -373,6 +373,9 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
               {product?.price ? `${product.price.toLocaleString("ru-RU")} ₽` : "5 990 ₽"}
             </div>
 
+            {/* Лимит тиража */}
+            <p className="uppercase text-sm tracking-[0.2em] text-bg-4 font-bold">100 LIMIT</p>
+
             {/* Размер и посадка */}
             <div className="space-y-4 pt-4 border-t border-black/10">
               {/* Посадка - выбирается пользователем */}
@@ -523,15 +526,11 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           </div>
         </div>
 
-        <div className="my-16" aria-hidden="true">
-          <div className="h-1 bg-bg-4" />
-          <div className="mt-2 h-1 bg-bg-4" />
-        </div>
-
         {/* Инфо о товаре */}
         <div className="mb-16 space-y-10">
           <div>
-   	      <h2 className="text-2xl uppercase mb-6">Инфо о товаре</h2>
+   	      <h2 className="text-2xl uppercase">Информация о товаре</h2>
+           <div className="my-4 border-b border-black/20" aria-hidden="true" />
           <div className="space-y-8">
             <section>
               <h3 className="uppercase text-sm font-medium mb-3">Описание</h3>
@@ -539,10 +538,6 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 {product?.description ||
                   "Премиальная футболка из высококачественного хлопка. Идеальная посадка и комфорт для повседневной носки. Минималистичный дизайн подойдет к любому образу."}
               </p>
-            </section>
-
-            <section>
-              <p className="uppercase text-sm font-medium mb-3">100 LIMIT</p>
             </section>
 
             <section>
