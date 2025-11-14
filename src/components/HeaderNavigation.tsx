@@ -136,6 +136,12 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
     router.push(`/product/${productId}`);
   };
 
+  const handleCloseSearch = () => {
+    setIsSearchOpen(false);
+    setSearchQuery("");
+    setSearchResults([]);
+  };
+
   const isActiveLink = (href: string) => {
     if (!pathname) return false;
     if (href.startsWith("/product")) {
@@ -238,8 +244,8 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
     : "absolute top-full left-0 right-0";
 
   const dropdownInnerClass = isMobile
-    ? "flex flex-col h-full w-full px-5 py-6"
-    : "max-w-6xl mx-auto px-6 pt-4 pb-0";
+    ? "flex flex-col h-full w-full px-5 py-6 gap-4"
+    : "max-w-6xl mx-auto px-6 pt-4 pb-4";
 
   const resultsWrapperClass = isMobile
     ? "flex-1 mt-4 overflow-y-auto"
@@ -253,7 +259,19 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
       }`}
     >
       <div className={dropdownInnerClass}>
-        <div className="relative">
+        {isMobile && (
+          <div className="flex items-center justify-between">
+            <span className="uppercase text-sm tracking-[0.2em] text-bg-3/70">Поиск по каталогу</span>
+            <button
+              onClick={handleCloseSearch}
+              className="text-sm uppercase tracking-[0.2em] text-bg-4"
+              aria-label="Закрыть поиск"
+            >
+              Закрыть
+            </button>
+          </div>
+        )}
+        <div className={`relative ${isMobile ? "mt-2" : ""}`}>
           <input
             ref={inputRef}
             type="text"
@@ -349,10 +367,10 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
             }`}
           >
             <Link
-              href="/product/RV-W-002"
+              href="/product/RV-W-001"
               onClick={() => setIsMobileMenuOpen(false)}
               className={`flex items-center justify-start px-2 py-3 uppercase text-lg tracking-[0.1em] transition-opacity hover:opacity-80 ${
-                isActiveLink("/product/RV-W-002")
+                isActiveLink("/product/RV-W-001")
                   ? "font-black text-white"
                   : "font-light text-[#FFF8F0]/60"
               }`}
@@ -445,9 +463,9 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
         <div className="w-full px-10 flex items-center gap-8">
           <nav className="flex flex-1 items-center justify-start gap-8 uppercase tracking-[0.04em] text-lg">
             <Link
-              href="/product/RV-W-002"
+              href="/product/RV-W-001"
               className={`tracking-[0.04em] transition-opacity hover:opacity-80 ${
-                isActiveLink("/product/RV-W-002")
+                isActiveLink("/product/RV-W-001")
                   ? "font-black text-white"
                   : "font-light text-[#FFF8F0]/60"
               }`}
@@ -524,9 +542,9 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
       <div className="w-full px-14 flex items-center gap-10">
         <nav className="flex flex-1 items-center justify-start gap-10 uppercase tracking-[0.04em] text-lg">
           <Link
-            href="/product/RV-W-002"
+            href="/product/RV-W-001"
             className={`tracking-[0.04em] transition-opacity hover:opacity-80 ${
-              isActiveLink("/product/RV-W-002")
+              isActiveLink("/product/RV-W-001")
                 ? "font-black text-white"
                 : "font-light text-[#FFF8F0]/60"
             }`}

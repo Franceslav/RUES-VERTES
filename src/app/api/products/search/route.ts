@@ -120,17 +120,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ products: [] }, { status: 200 });
     }
 
-    const EXCLUDED_CODES = new Set(["RV-M-001", "RV-M-002", "RV-W-001", "RV-W-002"]);
-
     const allProducts = await prisma.product.findMany({
       orderBy: { createdAt: "desc" },
     });
 
-    const visibleProducts = allProducts.filter(
-      (product) => !product.code || !EXCLUDED_CODES.has(product.code)
-    );
-
-    const scoredProducts = visibleProducts
+    const scoredProducts = allProducts
       .map((product) => ({
         product: {
           id: product.id,

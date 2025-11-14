@@ -7,7 +7,7 @@ async function main() {
   const products = [
     {
       name: 'VRT SHIRT 001',
-      code: 'RV-W-002',
+      code: 'RV-W-001',
       price: 6800,
       category: 'Унисекс',
       fit: 'Обычная',

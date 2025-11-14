@@ -52,12 +52,12 @@ function EmailSubscriptionBase({ variant = "green" }: EmailSubscriptionProps) {
     <div className={`mb-12 ${containerClass} rounded-lg`}>
       <div className="relative w-full flex flex-col items-center justify-center p-6 md:p-8">
         <div className="text-center space-y-4 z-10 max-w-2xl w-full">
-          <h2
-            className={`text-xl md:text-2xl lg:text-3xl uppercase font-medium ${headingColor}`}
+          <p
+            className={`text-xl md:text-xl lg:text-2xl uppercase font-medium leading-snug md:leading-tight ${headingColor}`}
             style={{ fontFamily: "var(--font-ibm-plex-mono)", fontWeight: 500 }}
           >
             Скидка 10% за подписку на EMAIL-РАССЫЛКУ
-          </h2>
+          </p>
           <p
             className={`text-xs md:text-sm opacity-90 ${textColor}`}
             style={{ fontFamily: "var(--font-ibm-plex-mono)", fontWeight: 400 }}

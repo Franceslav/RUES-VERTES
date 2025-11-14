@@ -4,7 +4,7 @@ import { EmailSubscriptionBeige } from "@/components/EmailSubscription";
 import Link from "next/link";
 import Image from "next/image";
 
-const featuredProductId = "RV-W-002";
+const featuredProductId = "RV-W-001";
 
 export default function Home() {
   return (
@@ -108,7 +108,7 @@ export default function Home() {
       <section className="w-full py-8 bg-bg-4" aria-hidden="true" />
 
       {/* Блок №4: Подписка на email */}
-      <section className="w-full bg-bg-4 py-12">
+      <section className="w-full bg-bg-4 py-4 sm:py-4">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <EmailSubscriptionBeige />
           </div>
