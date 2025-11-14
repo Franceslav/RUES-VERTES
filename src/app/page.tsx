@@ -9,7 +9,7 @@ const featuredProductId = "RV-W-002";
 export default function Home() {
   return (
     <div className="min-h-screen bg-bg-1">
-      <HeaderNavigation className="py-6" />
+        <HeaderNavigation className="py-6" />
 
       {/* Блок №1: Статичное фото - полноширинное */}
       <section className="relative w-full h-screen overflow-hidden flex items-center justify-center">
@@ -21,20 +21,20 @@ export default function Home() {
           priority
         />
         <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 flex flex-col items-center justify-center gap-6 px-4 text-center translate-y-20 md:translate-y-16">
+        <div className="relative z-10 flex flex-col items-center justify-center gap-8 px-4 text-center translate-y-20 md:translate-y-16">
           <h1
-            className="text-white text-4xl md:text-6xl lg:text-[6rem] font-bold uppercase tracking-[0.35em]"
+            className="text-white text-3xl md:text-5xl lg:text-[4.5rem] font-bold uppercase tracking-[0.3em] leading-[1.3]"
             style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontWeight: 700 }}
           >
             VRT SHIRT 001
           </h1>
           <Link
             href={`/product/${featuredProductId}`}
-            className="px-10 py-6 md:px-14 md:py-7 border-[3px] border-white text-white uppercase tracking-[0.35em] text-2xl md:text-3xl flex items-center justify-center transition-colors duration-200 hover:bg-white hover:text-bg-4 translate-y-6 md:translate-y-0"
+            className="px-12 py-6 md:px-16 md:py-7 border-[3px] border-white text-white uppercase tracking-[0.35em] text-3xl md:text-4xl font-semibold flex items-center justify-center transition-colors duration-200 hover:bg-white hover:text-bg-4 translate-y-6 md:translate-y-0"
           >
             Shop now
           </Link>
-        </div>
+      </div>
       </section>
 
       <section className="w-full py-8 bg-bg-4" aria-hidden="true" />
@@ -66,8 +66,8 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" aria-hidden="true" />
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
 
       <section className="w-full py-8 bg-bg-4" aria-hidden="true" />
 
@@ -98,12 +98,12 @@ export default function Home() {
               <div className="absolute inset-0 flex items-end justify-start p-6">
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity text-white uppercase text-sm tracking-[0.2em]">
                   {look.label}
-                </div>
-              </div>
+            </div>
+            </div>
             </div>
           ))}
-        </div>
-      </section>
+          </div>
+        </section>
 
       <section className="w-full py-8 bg-bg-4" aria-hidden="true" />
 
@@ -111,8 +111,8 @@ export default function Home() {
       <section className="w-full bg-bg-4 py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <EmailSubscriptionBeige />
-        </div>
-      </section>
+          </div>
+        </section>
 
       <Footer />
     </div>

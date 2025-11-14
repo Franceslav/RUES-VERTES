@@ -27,6 +27,7 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const searchAbortController = useRef<AbortController | null>(null);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -81,24 +82,45 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
     };
   }, [isSearchOpen]);
 
+  useEffect(() => {
+    return () => {
+      searchAbortController.current?.abort();
+    };
+  }, []);
+
   const performSearch = async (query: string) => {
     if (!query.trim()) {
+      searchAbortController.current?.abort();
       setSearchResults([]);
+      setIsSearching(false);
       return;
     }
 
+    searchAbortController.current?.abort();
+    const controller = new AbortController();
+    searchAbortController.current = controller;
+
     setIsSearching(true);
     try {
-      const response = await fetch(`/api/products/search?q=${encodeURIComponent(query)}`);
+      const response = await fetch(`/api/products/search?q=${encodeURIComponent(query)}`, {
+        signal: controller.signal,
+      });
       if (response.ok) {
         const data = await response.json();
         setSearchResults(data.products || []);
+      } else {
+        setSearchResults([]);
       }
     } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        return;
+      }
       console.error("Search error:", error);
       setSearchResults([]);
     } finally {
-      setIsSearching(false);
+      if (searchAbortController.current === controller) {
+        setIsSearching(false);
+      }
     }
   };
 
@@ -211,14 +233,26 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
   const menuBar = <div className="bg-[#FFF8F0] h-[3.628px] w-full" />;
 
   // Компонент поиска
-  const SearchDropdown = () => (
+  const dropdownPositionClass = isMobile
+    ? "fixed inset-0 top-0 left-0 right-0 bottom-0 h-screen"
+    : "absolute top-full left-0 right-0";
+
+  const dropdownInnerClass = isMobile
+    ? "flex flex-col h-full w-full px-5 py-6"
+    : "max-w-6xl mx-auto px-6 pt-4 pb-0";
+
+  const resultsWrapperClass = isMobile
+    ? "flex-1 mt-4 overflow-y-auto"
+    : "mt-4 max-h-96 overflow-y-auto";
+
+  const searchDropdown = (
     <div
       ref={searchRef}
-      className={`absolute top-full left-0 right-0 bg-bg-1 border-t border-bg-4 shadow-lg z-50 ${
+      className={`${dropdownPositionClass} bg-bg-1 border-t border-bg-4 shadow-lg z-50 ${
         isSearchOpen ? "block" : "hidden"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4">
+      <div className={dropdownInnerClass}>
         <div className="relative">
           <input
             ref={inputRef}
@@ -238,7 +272,7 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
 
         {/* Результаты поиска */}
         {searchQuery.trim().length > 0 && !isSearching && (
-          <div className="mt-4 max-h-96 overflow-y-auto">
+          <div className={resultsWrapperClass}>
             {searchResults.length > 0 ? (
               <div className="space-y-2">
                 {searchResults.map((product) => (
@@ -399,7 +433,7 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
             </div>
           </nav>
         </div>
-        <SearchDropdown />
+        {searchDropdown}
       </header>
     );
   }
@@ -479,7 +513,7 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
             </Link>
           </div>
         </div>
-        <SearchDropdown />
+        {searchDropdown}
       </header>
     );
   }
@@ -558,7 +592,7 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
           </Link>
         </div>
       </div>
-      <SearchDropdown />
+      {searchDropdown}
     </header>
   );
 }
