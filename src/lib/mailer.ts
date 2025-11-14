@@ -17,10 +17,13 @@ export type OrderSummary = {
   items: OrderItemSummary[];
 };
 
-const DEFAULT_RECIPIENT = "fluttrium@gmail.com";
+const DEFAULT_RECIPIENT = process.env.ADMIN_EMAIL ?? "fluttrium@gmail.com";
 
 const ORDER_NOTIFICATION_EMAIL =
   process.env.ORDER_NOTIFICATION_EMAIL ?? DEFAULT_RECIPIENT;
+
+const SUBSCRIPTION_NOTIFICATION_EMAIL =
+  process.env.SUBSCRIPTION_NOTIFICATION_EMAIL ?? DEFAULT_RECIPIENT;
 
 let transporterCache: ReturnType<typeof nodemailer.createTransport> | null = null;
 
@@ -88,6 +91,26 @@ export async function sendOrderNotification(order: OrderSummary) {
     });
   } catch (error) {
     console.error("Failed to send order notification email:", error);
+  }
+}
+
+export async function sendSubscriptionNotification(email: string) {
+  const transporter = getTransporter();
+
+  if (!transporter || !email) {
+    return;
+  }
+
+  try {
+    await transporter.sendMail({
+      to: SUBSCRIPTION_NOTIFICATION_EMAIL,
+      from: process.env.SMTP_FROM ?? (process.env.SMTP_USER ?? SUBSCRIPTION_NOTIFICATION_EMAIL),
+      subject: "Новая подписка на рассылку",
+      text: `Пользователь оставил email для рассылки: ${email}`,
+      html: `<p>Пользователь оставил email для рассылки:</p><p><strong>${email}</strong></p>`,
+    });
+  } catch (error) {
+    console.error("Failed to send subscription notification email:", error);
   }
 }
 

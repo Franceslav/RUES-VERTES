@@ -17,21 +17,28 @@ function EmailSubscriptionBase({ variant = "green" }: EmailSubscriptionProps) {
     setIsSubmitting(true);
 
     try {
-      // Сохраняем подписку в localStorage
       if (typeof window !== "undefined" && window.localStorage) {
         localStorage.setItem("email_subscribed", "true");
         localStorage.setItem("subscribed_email", email);
-        setEmail("");
-        // Показываем сообщение об успехе (можно добавить уведомление)
-        alert("Спасибо за подписку!");
-      } else {
-        throw new Error("localStorage недоступен");
       }
-      
-      // Здесь можно добавить API запрос для реальной подписки
-      // await fetch("/api/subscribe", { method: "POST", body: JSON.stringify({ email }) });
+
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Не удалось оформить подписку");
+      }
+
+      setEmail("");
+      alert("Спасибо за подписку!");
     } catch (error) {
       console.error("Subscription error:", error);
+      alert("Не удалось оформить подписку. Попробуйте позже.");
     } finally {
       setIsSubmitting(false);
     }
