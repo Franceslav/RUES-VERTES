@@ -10,9 +10,10 @@ import EmailSubscription from "@/components/EmailSubscription";
 import Image from "next/image";
 
 const FALLBACK_PRODUCT_IMAGES = [
-  "/2025719194253168.jpg",
-  "/dclassic%202025-08-17%20173739.668.JPG",
-  "/dclassic%202025-08-25%20153725.511.JPG",
+  "/IMG_2530.JPG",
+  "/IMG_2524(1).JPG",
+  "/IMG_2520.JPG",
+  "/IMG_2523(1).jpg",
 ];
 
 interface Product {
@@ -33,7 +34,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const { user } = useAuth();
   const router = useRouter();
   const [selectedSize, setSelectedSize] = useState<string>("");
-  const [selectedFit, setSelectedFit] = useState<string>("Regular");
+  const [selectedFit, setSelectedFit] = useState<string>("Relaxed");
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -158,17 +159,11 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
   const sizes = product?.sizes || defaultSizes;
   // Посадка - выбирается пользователем
   const fitScale = [
+    { label: "Fitted", value: "Fitted" },
     { label: "Slim", value: "Slim" },
-    { label: "Slim/Regular", value: "Slim/Regular" },
     { label: "Regular", value: "Regular" },
     { label: "Relaxed", value: "Relaxed" },
     { label: "Oversized", value: "Oversized" },
-  ];
-
-  const lookbookImages = [
-    { src: "/lookbook/202571920230512.jpg", alt: "Lookbook образ 1" },
-    { src: "/lookbook/2025719202722568.jpg", alt: "Lookbook образ 2" },
-    { src: "/lookbook/202583151222472.jpg", alt: "Lookbook образ 3" },
   ];
 
   const galleryImages = useMemo(() => {
@@ -377,7 +372,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
             <p className="uppercase text-sm tracking-[0.2em] text-bg-4 font-bold">100 LIMIT</p>
 
             {/* Размер и посадка */}
-            <div className="space-y-4 pt-4 border-t border-black/10">
+            <div className="space-y-4 pt-4 -mx-4 sm:-mx-6 lg:mx-0 px-4 sm:px-6 lg:px-0 border-t border-black/10">
               {/* Посадка - выбирается пользователем */}
               <div>
                 <p className="uppercase text-sm font-medium mb-3">Посадка</p>
@@ -385,27 +380,27 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                   <div className="absolute top-1/2 left-0 right-0 h-[2px] bg-black/30 -translate-y-1/2" aria-hidden="true" />
                   <div className="grid grid-cols-5 gap-3 relative">
                     {fitScale.map((item) => {
-                      const isRegular = item.value === "Regular";
-                      const isActive = selectedFit === item.value || isRegular;
+                      const isRelaxed = item.value === "Relaxed";
+                      const isActive = selectedFit === item.value || isRelaxed;
 
                       return (
                         <button
                           key={item.value}
                           onClick={() => {
-                            if (isRegular) {
+                            if (isRelaxed) {
                               setSelectedFit(item.value);
                             }
                           }}
-                          disabled={!isRegular}
-                          aria-disabled={!isRegular}
+                          disabled={!isRelaxed}
+                          aria-disabled={!isRelaxed}
                           className={`relative flex flex-col items-center gap-2 transition-colors ${
-                            isRegular ? "text-bg-4" : "text-bg-3 opacity-50 cursor-not-allowed"
+                            isRelaxed ? "text-bg-4" : "text-bg-3 opacity-50 cursor-not-allowed"
                           }`}
                           aria-label={`Посадка ${item.label}`}
                         >
                           <span
                             className={`w-12 h-12 rounded-full border-2 flex items-center justify-center text-xs uppercase tracking-widest transition-all ${
-                              isActive && isRegular
+                              isActive && isRelaxed
                                 ? "border-bg-4 bg-bg-4 text-white"
                                 : "border-black/10 bg-white"
                             }`}

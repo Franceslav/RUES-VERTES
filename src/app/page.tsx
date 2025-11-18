@@ -15,7 +15,7 @@ export default function Home() {
       {/* Блок №1: Статичное фото - полноширинное */}
       <section className="relative w-full h-screen overflow-hidden flex items-center justify-center">
         <Image
-          src="/dclassic%202025-08-17%20173739.668.JPG"
+          src="/IMG_1811%20(1)%20(1).jpg"
           alt="Зеленая улица с граффити и брендовыми коробками"
           fill
           className="object-cover"
@@ -46,7 +46,7 @@ export default function Home() {
 
           <div className="group relative w-full h-[90vh] bg-bg-2 overflow-hidden">
             <Image
-              src="/202583155953600.jpg"
+              src="/IMG_1804.jpg"
               alt="Мужская коллекция Reus Vertus"
               fill
               className="object-cover"
@@ -58,7 +58,7 @@ export default function Home() {
 
           <div className="group relative w-full h-[90vh] bg-bg-2 overflow-hidden">
             <Image
-              src="/dclassic%202025-08-25%20153725.511.JPG"
+              src="/IMG_2727.JPG"
               alt="коллекция Reus Vertus"
               fill
               className="object-cover"
@@ -73,19 +73,19 @@ export default function Home() {
       <section className="w-full py-8 bg-bg-4" aria-hidden="true" />
 
       {/* Блок №3: Прохожие - луки из lookbook */}
-      <section className="w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <section className="w-full bg-bg-4">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 px-4 sm:px-6 lg:px-8 py-12">
           {[
-            { id: 1, src: "/lookbook/dclassic%202025-08-17%20173726.260.JPG", label: "Look 1" },
-            { id: 2, src: "/lookbook/dclassic%202025-08-25%20154007.751.JPG", label: "Look 2" },
-            { id: 3, src: "/lookbook/202571921630928%20(1).jpg", label: "Look 3" },
-            { id: 4, src: "/lookbook/2025825151941112.jpg", label: "Look 4" },
-            { id: 5, src: "/lookbook/2025831539728.jpg", label: "Look 5" },
-            { id: 6, src: "/lookbook/202583151459872.jpg", label: "Look 6" },
+            { id: 1, src: "/blok3/IMG_4357.JPEG", label: "Look 1" },
+            { id: 2, src: "/blok3/IMG_4230.png", label: "Look 2" },
+            { id: 3, src: "/blok3/IMG_1609.jpg", label: "Look 3" },
+            { id: 4, src: "/blok3/1.1.JPEG", label: "Look 4" },
+            { id: 5, src: "/blok3/IMG_4186.JPEG", label: "Look 5" },
+            { id: 6, src: "/photo_2025-11-1820.57.02.jpeg", label: "Look 6" },
           ].map((look, index) => (
             <div
               key={look.id}
-              className="relative w-full h-[70vh] bg-bg-2 overflow-hidden flex items-center justify-center group"
+              className="relative aspect-[3/4] bg-bg-2 overflow-hidden rounded-lg group"
             >
               <Image
                 src={look.src}
@@ -95,12 +95,12 @@ export default function Home() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 priority={index < 2}
               />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" aria-hidden="true" />
-              <div className="absolute inset-0 flex items-end justify-start p-6">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity text-white uppercase text-sm tracking-[0.2em]">
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" aria-hidden="true" />
+              <div className="absolute inset-0 flex items-end justify-start p-4 sm:p-6">
+                <div className="opacity-0 group-hover:opacity-100 transition-opacity text-white uppercase text-xs sm:text-sm tracking-[0.2em]">
                   {look.label}
-            </div>
-            </div>
+                </div>
+              </div>
             </div>
           ))}
           </div>
