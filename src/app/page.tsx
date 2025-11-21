@@ -48,7 +48,7 @@ export default function Home() {
           </h3>
           <Link
             href={`/product/${featuredProductId}`}
-            className="button-link px-10 py-5 md:px-20 md:py-8 border-[2px] border-white text-white uppercase tracking-[0.2em] text-[2.4rem] md:text-[10.4rem] font-black flex items-center justify-center transition-colors duration-200 hover:bg-white hover:text-bg-4 translate-y-3 md:translate-y-0 md:mt-32 whitespace-nowrap"
+            className="button-link px-10 py-5 md:px-20 md:py-8 border-[2px] border-white text-white uppercase tracking-[0.2em] text-[2.4rem] md:text-[10.4rem] font-black flex items-center justify-center transition-colors duration-200 hover:bg-white hover:text-bg-4 translate-y-3 md:translate-y-0 mt-32 whitespace-nowrap"
           >
             Shop now
           </Link>
