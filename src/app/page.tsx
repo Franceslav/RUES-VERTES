@@ -33,11 +33,7 @@ export default function Home() {
             className="text-sm md:text-2xl lg:text-[4.5rem] font-bold uppercase tracking-[0.1em] leading-[1.8]"
             style={{ fontFamily: 'var(--font-ibm-plex-mono)', fontWeight: 600, color: 'var(--bg-1)' }}
           >
-            Сообщество дизайнеров и молодых предпринимателей с уникальным мировозрением,
-            <br />
-            выражающих свои ценности через стиль одежды.
-            <br />
-            Пространство для тех, кто творит и вдохновляет
+            Сообщество дизайнеров и молодых{"\u00A0"}предпринимателей с уникальным{"\u00A0"}мировозрением, выражающих свои{"\u00A0"}ценности через стиль{"\u00A0"}одежды. Пространство для тех, кто творит и{"\u00A0"}вдохновляет
           </h2>
           <Link
             href={`/product/${featuredProductId}`}
