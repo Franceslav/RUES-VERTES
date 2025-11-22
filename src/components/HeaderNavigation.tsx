@@ -370,6 +370,21 @@ export default function HeaderNavigation({ className = "" }: HeaderNavigationPro
             }`}
           >
             <Link
+              href="/"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-24 flex items-center mb-4"
+              aria-label="На главную"
+            >
+              <Image
+                src="/RUES%20VERTES.png"
+                alt="Rues Vertes"
+                width={96}
+                height={32}
+                priority
+                className="h-auto w-full max-w-[96px]"
+              />
+            </Link>
+            <Link
               href="/product/RV-W-001"
               onClick={() => setIsMobileMenuOpen(false)}
               className={getNavLinkClasses(
