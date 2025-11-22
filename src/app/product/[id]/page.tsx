@@ -302,7 +302,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
         {/* Основной блок: Фото слева, информация справа */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-14 items-start">
           {/* Левая колонка: Фото товара (закрепляется) */}
-          <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)]">
+          <div className="lg:sticky lg:top-6 lg:self-start lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto">
             <div className="space-y-4">
               {/* Главное фото */}
               <div className="relative w-full aspect-[3/4] md:aspect-[4/5] bg-bg-1 rounded-xl overflow-hidden">
