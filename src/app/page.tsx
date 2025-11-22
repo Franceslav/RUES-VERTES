@@ -102,7 +102,7 @@ export default function Home() {
           ].map((look, index) => (
             <div
               key={look.id}
-              className="relative aspect-[3/4] bg-bg-2 overflow-hidden rounded-lg group"
+              className="relative aspect-[3/4] bg-bg-1 overflow-hidden rounded-xl group"
             >
               <Image
                 src={look.src}

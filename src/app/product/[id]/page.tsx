@@ -305,15 +305,14 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
           <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)]">
             <div className="space-y-4">
               {/* Главное фото */}
-              <div className="relative w-full bg-bg-2 rounded-lg overflow-hidden flex items-center justify-center" style={{ minHeight: '400px', maxHeight: '80vh' }}>
+              <div className="relative w-full aspect-[3/4] md:aspect-[4/5] bg-bg-1 rounded-xl overflow-hidden">
                 {activeImage ? (
                   <Image
                     src={activeImage}
                     alt={product?.name ? `${product.name} — фото ${selectedImageIndex + 1}` : `Фото товара ${selectedImageIndex + 1}`}
-                    width={800}
-                    height={800}
+                    fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-contain w-full h-auto"
+                    className="object-contain"
                     priority
                   />
                 ) : (
@@ -529,7 +528,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
            <div className="my-4 border-b border-black/20" aria-hidden="true" />
           <div className="space-y-8">
             <section>
-              <h3 className="uppercase text-sm font-medium mb-3">Описание</h3>
+              <h2 className="uppercase text-sm font-medium mb-3">Описание</h2>
               <p className="leading-relaxed opacity-80">
                 {product?.description ||
                   "Премиальная футболка из высококачественного хлопка. Идеальная посадка и комфорт для повседневной носки. Минималистичный дизайн подойдет к любому образу."}
@@ -537,19 +536,19 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
             </section>
 
             <section>
-              <h3 className="uppercase text-sm font-medium mb-3">Состав</h3>
+              <h2 className="uppercase text-sm font-medium mb-3">Состав</h2>
               <p className="leading-relaxed opacity-80">
                 {limitText("100% хлопок, кулирка с peach-эффектом, 250 г/м²")}
               </p>
             </section>
 
             <section>
-              <h3 className="uppercase text-sm font-medium mb-3">Параметры модели</h3>
+              <h2 className="uppercase text-sm font-medium mb-3">Параметры модели</h2>
               <p className="leading-relaxed opacity-80">Рост: 180 см, размер: M</p>
             </section>
 
             <section>
-              <h3 className="uppercase text-sm font-medium mb-3">Подробности, материалы и инструкция по уходу</h3>
+              <h2 className="uppercase text-sm font-medium mb-3">Подробности, материалы и инструкция по уходу</h2>
               <p className="leading-relaxed opacity-80">
                 Изделие изготавливается из высококачественного хлопка с мягкой поверхностью. Рекомендуется деликатный уход, чтобы сохранить структуру ткани и насыщенность цвета.
               </p>
@@ -557,13 +556,13 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
 
             <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h3 className="uppercase text-sm font-medium mb-1">Коллекция</h3>
+                <h2 className="uppercase text-sm font-medium mb-1">Коллекция</h2>
                 <p className="opacity-80 uppercase">{limitText("Осень-Зима 2025")}</p>
               </div>
             </section>
 
             <section>
-              <h3 className="uppercase text-sm font-medium mb-3">Уход</h3>
+              <h2 className="uppercase text-sm font-medium mb-3">Уход</h2>
               <ul className="space-y-2 opacity-80">
                 <li>{limitText("• Машинная стирка при 30°C")}</li>
                 <li>{limitText("• Не отбеливать")}</li>
@@ -573,7 +572,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
             </section>
 
             <section>
-              <h3 className="uppercase text-sm font-medium mb-3">Доставка</h3>
+              <h2 className="uppercase text-sm font-medium mb-3">Доставка</h2>
               <p className="leading-relaxed opacity-80">
                 {limitText("Доставка по Москве и регионам России. Срок доставки: 1–3 рабочих дня.")}
               </p>

@@ -67,7 +67,7 @@ export default function AboutPage() {
           <h2 className="text-2xl uppercase border-b border-black/20 pb-2">Ценности</h2>
           <div className="space-y-6 leading-relaxed text-justify">
             <div>
-              <h3 className="font-semibold text-lg mb-2">Качество</h3>
+              <h2 className="font-semibold text-lg mb-2">Качество</h2>
               <div className="space-y-2">
                 <p>
                   Мы используем только проверенные материалы и работаем с лучшими производителями.
@@ -76,7 +76,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div>
-              <h3 className="font-semibold text-lg mb-2">Честность</h3>
+              <h2 className="font-semibold text-lg mb-2">Честность</h2>
               <div className="space-y-2">
               <p>
                 Прозрачность на всех этапах — от выбора материалов до финальной цены.
@@ -87,14 +87,14 @@ export default function AboutPage() {
               </div>
             </div>
             <div>
-              <h3 className="font-semibold text-lg mb-2">Устойчивость</h3>
+              <h2 className="font-semibold text-lg mb-2">Устойчивость</h2>
               <div className="space-y-2">
                 <p>Забота об окружающей среде — это не опция, а необходимость.</p>
                 <p>Мы выбираем экологичные материалы, чтобы минимизировать отходы производства.</p>
               </div>
             </div>
             <div>
-              <h3 className="font-semibold text-lg mb-2">Индивидуальность</h3>
+              <h2 className="font-semibold text-lg mb-2">Индивидуальность</h2>
               <p>
                 Каждый человек уникален, и наша одежда призвана подчеркнуть это, а не навязать определённый образ.
               </p>
@@ -117,7 +117,7 @@ export default function AboutPage() {
                 />
               </div>
               <div>
-                <h3 className="text-xl font-semibold uppercase">Элеонора Григорян</h3>
+                <h2 className="text-xl font-semibold uppercase">Элеонора Григорян</h2>
                 <p className="text-sm opacity-70 uppercase">CEO</p>
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold uppercase">Юлия Вирачева</h3>
+                <h2 className="text-xl font-semibold uppercase">Юлия Вирачева</h2>
                 <p className="text-sm opacity-70 uppercase">Creative Producer</p>
               </div>
             </div>
